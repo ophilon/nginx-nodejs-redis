@@ -2,22 +2,26 @@
 services:
   redis:
     image: 'redislabs/redismod'
+    container_name: redis
     ports:
       - '6379:6379'
   web1:
     restart: on-failure
     build: ./web
+    container_name: web1
     hostname: web1
     ports:
       - '81:5000'
   web2:
     restart: on-failure
     build: ./web
+    container_name: web2
     hostname: web2
     ports:
       - '82:5000'
   nginx:
     build: ./nginx
+    container_name: nginx
     ports:
     - '80:80'
     depends_on:
