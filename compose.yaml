@@ -8,6 +8,7 @@ services:
   web1:
     restart: on-failure
     build: ./web
+    image: web1:latest
     container_name: web1
     hostname: web1
     ports:
@@ -15,12 +16,14 @@ services:
   web2:
     restart: on-failure
     build: ./web
+    image: web2:latest
     container_name: web2
     hostname: web2
     ports:
       - '82:5000'
   nginx:
     build: ./nginx
+    image: nginx:alpine-latest
     container_name: nginx
     ports:
     - '80:80'
