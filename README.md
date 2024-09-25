@@ -1,8 +1,10 @@
-## Compose sample application
+## Compose демо
 
 ## Node.js application with Nginx proxy and Redis database
 
-Project structure:
+## Приложение Node.js с прокси-сервером Nginx и базой данных Redis
+Структура проекта:
+
 ```
 .
 ├── README.md
@@ -16,7 +18,6 @@ Project structure:
     └── server.js
 
 2 directories, 7 files
-
 
 ```
 [_compose.yaml_](compose.yaml)
@@ -45,14 +46,13 @@ redis:
     - web1
     - web2
 ```
-The compose file defines an application with four services `redis`, `nginx`, `web1` and `web2`.
-When deploying the application, docker compose maps port 80 of the nginx service container to port 80 of the host as specified in the file.
 
+Файл compose определяет приложение с четырьмя службами `redis`, `nginx`, `web1` и `web2`. При развертывании приложения docker compose сопоставляет порт 80 контейнера служб nginx с портом 80 хоста, как указано в файле nginx.web1web2
 
-> ℹ️ **_INFO_**  
-> Nging runs on the posr 80 - pls, check that port available. Redis runs on port 6379 by default. Make sure port 6379 on the host is not being used by another container, otherwise the port should be changed.
+> ℹ️ **_ИНФОРМАЦИЯ_**
+> Nging работает на порту 80 - пожалуйста, проверьте, доступен ли этот порт. Redis по умолчанию работает на порту 6379. Убедитесь, что порт 6379 на хосте не используется другим контейнером, в противном случае порт следует изменить.
 
-## Deploy with docker compose
+## Развертывание с помощью docker compose
 
 ```
 $ docker compose up -d
@@ -69,19 +69,16 @@ $ docker compose up -d
  ⠿ Container nginx-nodejs-redis-nginx-1  Started
 ```
 
-
-## Expected result
-
-Listing containers must show three containers running and the port mapping as below:
-
+## Ожидаемый результат
+Список контейнеров должен содержать три запущенных контейнера и сопоставление портов, как показано ниже:
 
 ```
 docker-compose ps
 ```
 
-## Testing the app
+## Тестирование приложения
 
-After the application starts, navigate to `http://localhost:80` in your web browser or run:
+После запуска приложения перейдите http://localhost:80 в веб-браузере или выполните:
 
 ```
 curl localhost:80
@@ -98,11 +95,8 @@ $ curl localhost:80
 web2: Total number of visits is: 3
 ```
 
-
-
-## Stop and remove the containers
+## Остановите и удалите контейнеры.
 
 ```
 $ docker compose down
 ```
-
