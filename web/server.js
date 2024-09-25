@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
 const dirs = fs.readdirSync('node_modules');
 const data = {};
 //add ones you care about
-const trackedPackages = ['express', 'passport', 'body-parser'];
+const trackedPackages = ['express', 'redis'];
 dirs.forEach(function(dir) {
 
    if(trackedPackages.indexOf(dir) > -1){
