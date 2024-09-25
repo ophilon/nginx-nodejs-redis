@@ -50,7 +50,7 @@ When deploying the application, docker compose maps port 80 of the nginx service
 
 
 > ℹ️ **_INFO_**  
-> Redis runs on port 6379 by default. Make sure port 6379 on the host is not being used by another container, otherwise the port should be changed.
+> Nging runs on the posr 80 - pls, check that port available. Redis runs on port 6379 by default. Make sure port 6379 on the host is not being used by another container, otherwise the port should be changed.
 
 ## Deploy with docker compose
 
