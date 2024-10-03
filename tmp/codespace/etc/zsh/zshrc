@@ -1,0 +1,157 @@
+# /etc/zsh/zshrc: system-wide .zshrc file for zsh(1).
+#
+# This file is sourced only for interactive shells. It
+# should contain commands to set up aliases, functions,
+# options, key bindings, etc.
+#
+# Global Order: zshenv, zprofile, zshrc, zlogin
+
+READNULLCMD=${PAGER:-/usr/bin/pager}
+
+# An array to note missing features to ease diagnosis in case of problems.
+typeset -ga debian_missing_features
+
+if [[ -z "${DEBIAN_PREVENT_KEYBOARD_CHANGES-}" ]] &&
+   [[ "$TERM" != 'emacs' ]]
+then
+
+    typeset -A key
+    key=(
+        BackSpace  "${terminfo[kbs]}"
+        Home       "${terminfo[khome]}"
+        End        "${terminfo[kend]}"
+        Insert     "${terminfo[kich1]}"
+        Delete     "${terminfo[kdch1]}"
+        Up         "${terminfo[kcuu1]}"
+        Down       "${terminfo[kcud1]}"
+        Left       "${terminfo[kcub1]}"
+        Right      "${terminfo[kcuf1]}"
+        PageUp     "${terminfo[kpp]}"
+        PageDown   "${terminfo[knp]}"
+    )
+
+    function bind2maps () {
+        local i sequence widget
+        local -a maps
+
+        while [[ "$1" != "--" ]]; do
+            maps+=( "$1" )
+            shift
+        done
+        shift
+
+        sequence="${key[$1]}"
+        widget="$2"
+
+        [[ -z "$sequence" ]] && return 1
+
+        for i in "${maps[@]}"; do
+            bindkey -M "$i" "$sequence" "$widget"
+        done
+    }
+
+    bind2maps emacs             -- BackSpace   backward-delete-char
+    bind2maps       viins       -- BackSpace   vi-backward-delete-char
+    bind2maps             vicmd -- BackSpace   vi-backward-char
+    bind2maps emacs             -- Home        beginning-of-line
+    bind2maps       viins vicmd -- Home        vi-beginning-of-line
+    bind2maps emacs             -- End         end-of-line
+    bind2maps       viins vicmd -- End         vi-end-of-line
+    bind2maps emacs viins       -- Insert      overwrite-mode
+    bind2maps             vicmd -- Insert      vi-insert
+    bind2maps emacs             -- Delete      delete-char
+    bind2maps       viins vicmd -- Delete      vi-delete-char
+    bind2maps emacs viins vicmd -- Up          up-line-or-history
+    bind2maps emacs viins vicmd -- Down        down-line-or-history
+    bind2maps emacs             -- Left        backward-char
+    bind2maps       viins vicmd -- Left        vi-backward-char
+    bind2maps emacs             -- Right       forward-char
+    bind2maps       viins vicmd -- Right       vi-forward-char
+
+    # Make sure the terminal is in application mode, when zle is
+    # active. Only then are the values from $terminfo valid.
+    if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+        function zle-line-init () {
+            emulate -L zsh
+            printf '%s' ${terminfo[smkx]}
+        }
+        function zle-line-finish () {
+            emulate -L zsh
+            printf '%s' ${terminfo[rmkx]}
+        }
+        zle -N zle-line-init
+        zle -N zle-line-finish
+    else
+        for i in {s,r}mkx; do
+            (( ${+terminfo[$i]} )) || debian_missing_features+=($i)
+        done
+        unset i
+    fi
+
+    unfunction bind2maps
+
+fi # [[ -z "$DEBIAN_PREVENT_KEYBOARD_CHANGES" ]] && [[ "$TERM" != 'emacs' ]]
+
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin \
+                                           /usr/local/bin  \
+                                           /usr/sbin       \
+                                           /usr/bin        \
+                                           /sbin           \
+                                           /bin            \
+                                           /usr/X11R6/bin
+
+(( ${+aliases[run-help]} )) && unalias run-help
+autoload -Uz run-help
+
+# If you don't want compinit called here, place the line
+# skip_global_compinit=1
+# in your $ZDOTDIR/.zshenv
+if grep -q '^ID.*=.*ubuntu' /etc/os-release && [[ -z "$skip_global_compinit" ]]; then
+  autoload -U compinit
+  compinit
+fi
+if [ -z "${USER}" ]; then export USER=$(whoami); fi
+if [[ "${PATH}" != *"$HOME/.local/bin"* ]]; then export PATH="${PATH}:$HOME/.local/bin"; fi
+
+# Display optional first run image specific notice if configured and terminal is interactive
+if [ -t 1 ] && [[ "${TERM_PROGRAM}" = "vscode" || "${TERM_PROGRAM}" = "codespaces" ]] && [ ! -f "$HOME/.config/vscode-dev-containers/first-run-notice-already-displayed" ]; then
+    if [ -f "/usr/local/etc/vscode-dev-containers/first-run-notice.txt" ]; then
+        cat "/usr/local/etc/vscode-dev-containers/first-run-notice.txt"
+    elif [ -f "/workspaces/.codespaces/shared/first-run-notice.txt" ]; then
+        cat "/workspaces/.codespaces/shared/first-run-notice.txt"
+    fi
+    mkdir -p "$HOME/.config/vscode-dev-containers"
+    # Mark first run notice as displayed after 10s to avoid problems with fast terminal refreshes hiding it
+    ((sleep 10s; touch "$HOME/.config/vscode-dev-containers/first-run-notice-already-displayed") &)
+fi
+
+# Set the default git editor if not already set
+if [ -z "$(git config --get core.editor)" ] && [ -z "${GIT_EDITOR}" ]; then
+    if  [ "${TERM_PROGRAM}" = "vscode" ]; then
+        if [[ -n $(command -v code-insiders) &&  -z $(command -v code) ]]; then
+            export GIT_EDITOR="code-insiders --wait"
+        else
+            export GIT_EDITOR="code --wait"
+        fi
+    fi
+fi
+export HUGO_DIR=/usr/local/hugo/bin
+export NVM_DIR="/usr/local/share/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+if [[ "${PATH}" != *"/usr/local/nvs"* ]]; then export PATH=/usr/local/nvs:${PATH}; fi
+if [ -t 1 ] && [ "${IGNORE_NOTICE}" != "true" ] && [ "${TERM_PROGRAM}" = "vscode" ] && [ "${CODESPACES}" != "true" ] && [ ! -f "$HOME/.config/vscode-dev-containers/conda-notice-already-displayed" ]; then
+    cat "/usr/local/etc/vscode-dev-containers/conda-notice.txt"
+    mkdir -p "$HOME/.config/vscode-dev-containers"
+    ((sleep 10s; touch "$HOME/.config/vscode-dev-containers/conda-notice-already-displayed") &)
+fi
+if [[ "${PATH}" != *"/usr/local/php/current"* ]]; then export PATH="/usr/local/php/current/bin:${PATH}"; fi
+if ! grep rvm_silence_path_mismatch_check_flag $HOME/.rvmrc > /dev/null 2>&1; then echo 'rvm_silence_path_mismatch_check_flag=1' >> $HOME/.rvmrc; fi
+source /usr/local/rvm/scripts/rvm > /dev/null 2>&1
+export SDKMAN_DIR=/usr/local/sdkman
+. ${SDKMAN_DIR}/bin/sdkman-init.sh
+export ORYX_SDK_STORAGE_BASE_URL=https://oryx-cdn.microsoft.io && export ENABLE_DYNAMIC_INSTALL=true && DYNAMIC_INSTALL_ROOT_DIR=/opt && ORYX_PREFER_USER_INSTALLED_SDKS=true && export DEBIAN_FLAVOR=focal-scm
+if [[ "${PATH}" != *"/usr/local/python/current/bin"* ]]; then export PATH=/usr/local/python/current/bin:${PATH}; fi
+export PIPX_HOME="/usr/local/py-utils"
+export PIPX_BIN_DIR="/usr/local/py-utils/bin"
+if [[ "${PATH}" != *"${PIPX_BIN_DIR}"* ]]; then export PATH="${PATH}:${PIPX_BIN_DIR}"; fi

@@ -1,0 +1,10 @@
+Welcome to Gitpod: Always ready to code. Try the following commands to get started:
+
+	gp tasks list         List all your defined tasks in .gitpod.yml
+	gp tasks attach       Attach your terminal to a workspace task
+
+	gp ports list         Lists workspace ports and their states
+	gp stop               Stop current workspace
+	gp help               To learn about the gp CLI commands
+
+For more information, see the Gitpod documentation: https://gitpod.io/docs

@@ -1,0 +1,2 @@
+deb https://ppa.launchpadcontent.net/ondrej/apache2/ubuntu/ jammy main
+# deb-src https://ppa.launchpadcontent.net/ondrej/apache2/ubuntu/ jammy main

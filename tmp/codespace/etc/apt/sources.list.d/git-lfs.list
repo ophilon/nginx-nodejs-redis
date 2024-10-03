@@ -1,0 +1,2 @@
+deb [arch=amd64 signed-by=/usr/share/keyrings/gitlfs-archive-keyring.gpg] https://packagecloud.io/github/git-lfs/ubuntu focal main
+deb-src [arch=amd64 signed-by=/usr/share/keyrings/gitlfs-archive-keyring.gpg] https://packagecloud.io/github/git-lfs/ubuntu focal main

@@ -1,0 +1,52 @@
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+gitpod:x:33333:33333::/home/gitpod:/bin/bash
+nixbld1:x:33334:33334::/home/nixbld1:/bin/bash
+nixbld2:x:33335:33335::/home/nixbld2:/bin/bash
+nixbld3:x:33336:33336::/home/nixbld3:/bin/bash
+nixbld4:x:33337:33337::/home/nixbld4:/bin/bash
+nixbld5:x:33338:33338::/home/nixbld5:/bin/bash
+nixbld6:x:33339:33339::/home/nixbld6:/bin/bash
+nixbld7:x:33340:33340::/home/nixbld7:/bin/bash
+nixbld8:x:33341:33341::/home/nixbld8:/bin/bash
+nixbld9:x:33342:33342::/home/nixbld9:/bin/bash
+nixbld10:x:33343:33343::/home/nixbld10:/bin/bash
+nixbld11:x:33344:33344::/home/nixbld11:/bin/bash
+nixbld12:x:33345:33345::/home/nixbld12:/bin/bash
+nixbld13:x:33346:33346::/home/nixbld13:/bin/bash
+nixbld14:x:33347:33347::/home/nixbld14:/bin/bash
+nixbld15:x:33348:33348::/home/nixbld15:/bin/bash
+nixbld16:x:33349:33349::/home/nixbld16:/bin/bash
+nixbld17:x:33350:33350::/home/nixbld17:/bin/bash
+nixbld18:x:33351:33351::/home/nixbld18:/bin/bash
+nixbld19:x:33352:33352::/home/nixbld19:/bin/bash
+nixbld20:x:33353:33353::/home/nixbld20:/bin/bash
+nixbld21:x:33354:33354::/home/nixbld21:/bin/bash
+nixbld22:x:33355:33355::/home/nixbld22:/bin/bash
+nixbld23:x:33356:33356::/home/nixbld23:/bin/bash
+nixbld24:x:33357:33357::/home/nixbld24:/bin/bash
+nixbld25:x:33358:33358::/home/nixbld25:/bin/bash
+nixbld26:x:33359:33359::/home/nixbld26:/bin/bash
+nixbld27:x:33360:33360::/home/nixbld27:/bin/bash
+nixbld28:x:33361:33361::/home/nixbld28:/bin/bash
+nixbld29:x:33362:33362::/home/nixbld29:/bin/bash

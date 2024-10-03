@@ -1,0 +1,12 @@
+Filesystem                               Type     Size  Used Avail Use% Mounted on
+/.workspace/mark                         shiftfs  1.4T  170G  1.3T  13% /
+tmpfs                                    tmpfs     64M     0   64M   0% /dev
+/dev/sda5                                xfs      442G  8.8G  434G   2% /dev/termination-log
+shm                                      tmpfs     64M     0   64M   0% /dev/shm
+tmpfs                                    tmpfs     32G     0   32G   0% /sys/firmware
+/dev/mapper/lvm--disk-gitpod--workspaces xfs       30G   26M   30G   1% /workspace
+/dev/mapper/lvm--disk-containerd--mount  xfs      1.4T  170G  1.3T  13% /etc/hostname
+tmpfs                                    tmpfs     32G  8.0K   32G   1% /tmp
+tmpfs                                    tmpfs     32G     0   32G   0% /proc/acpi
+tmpfs                                    tmpfs     64M     0   64M   0% /proc/keys
+tmpfs                                    tmpfs     32G     0   32G   0% /proc/scsi

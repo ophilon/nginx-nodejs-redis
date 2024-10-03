@@ -1,0 +1,235 @@
+    1  id
+    2  git log
+    3  git remote -v
+    4  git push
+    5  ll tmp
+    6  id
+    7  docker info|less
+    8  dlocate -s docker
+    9  dlocate -s docker-ce
+   10  dlocate -s docker.io
+   11  cd tmp
+   12  ll
+   13  grep docker dpkg-l 
+   14  head dpkg-l 
+   15  dlocate -s adduser
+   16  cd ..
+   17  type vim
+   18  vim -v
+   19  vim --version
+   20  stty -a
+   21  free
+   22  dmesg
+   23  cd tmp
+   24  sudo dmesg|tee dmesg
+   25  less dmesg 
+   26  grep smpboot: dmesg 
+   27  grep Memory: dmesg 
+   28  ll
+   29  type docker
+   30  dlocate /usr/bin/docker
+   31  dlocate -s moby-cli
+   32  dlocate -s moby-engine
+   33  systemctl
+   34  systemctl status
+   35  ll
+   36  less ps.aux 
+   37  curl https://2ip.io
+   38  resolvectl status
+   39  cat /etc/resolv.conf 
+   40  service --status-all
+   41  service --status-all|tee service--status-all
+   42  ll
+   43  set
+   44  set|tee set
+   45  ll
+   46  alias
+   47  ll /
+   48  ll /home
+   49  ll /home/vscode/
+   50  id
+   51  ll /home/codespace/
+   52  java -v
+   53  java --version
+   54  grep java dpkg-l 
+   55  type java
+   56  ll /usr/local
+   57  ll /usr/local/hugo
+   58  ll /usr/local/hugo/bin/
+   59  grep PATH set
+   60  grep ^PATH set
+   61  cd ..
+   62  ll
+   63  git status
+   64  git add .
+   65  git status
+   66  git commit -m'some info about vm in tmp'
+   67  git log
+   68  git push
+   69  cd tmp
+   70  vim set
+   71  git commit -am'some info about vm in tmp;cleanup tokens'
+   72  git push
+   73  vim set
+   74  git revert
+   75  git revert ~HEAD-1
+   76  git log -2
+   77  git log -3
+   78  git reset hard f05d26c2d31bffc84c5005dc1d2a8d23d8bbcc93
+   79  git checkout f05d26c2
+   80  git log 
+   81  ll
+   82  cd ..
+   83  ll
+   84  cd tmp
+   85  ll ../..
+   86  ll ../../temp
+   87  ll ../../temp/*
+   88  cp ../../temp/* .
+   89  ll
+   90  cd ..
+   91  git branch -v
+   92  git stash
+   93  ll tmp
+   94  git log
+   95  git branch -v
+   96  git checkout main
+   97  git push
+   98  ll tmp
+   99  git log -4
+  100  git checkout d9ba939d14
+  101  git log 
+  102  ll tmp
+  103  vi tmp/set
+  104  git status
+  105  git add .
+  106  git status
+  107  git commit -m'clean up tokens in tmp/set'
+  108  git push
+  109  git push origin main
+  110  rm tmp/set 
+  111  git status
+  112  git add .
+  113  git commit -m'rm tmp/set'
+  114  git push origin main
+  115  git reset --hard d7d9511
+  116  git branch -v
+  117  git stash
+  118  git checkout main
+  119  git reset --hard d7d9511
+  120  git branch -v
+  121  git status
+  122  git push
+  123  ll tmp/
+  124  git log
+  125  git reset --hard d9ba939d145
+  126  git log
+  127  git push
+  128  ll tmp
+  129  git log
+  130  rm tmp/set
+  131  ll tmp
+  132  git status
+  133  git rm tmp/set
+  134  git status
+  135  git push
+  136  ll tmp
+  137  git add .
+  138  git status
+  139  git push
+  140  ll tmp
+  141  git log
+  142  ll tmp
+  143  git status
+  144  git log
+  145  git pull
+  146  git push
+  147  git log
+  148  git reset --hard f05d26c2d
+  149  git log
+  150  git push
+  151  ll
+  152  git status
+  153  mkdir tmp
+  154  cp ../temp/* tmp
+  155  ll tmp
+  156  git status
+  157  git add .
+  158  git status
+  159  git commit -am'some info about vm in tmp'
+  160  git push
+  161  cd tmp
+  162  set > set
+  163  grep -i token set
+  164  grep -i token set|less
+  165  grep TOKEN set|less
+  166  sed -i '/TOKEN/d' set
+  167  grep TOKEN set|less
+  168  grep TOKEN set
+  169  cd ..
+  170  git status
+  171  git add .
+  172  git commit -am'add clean tmp/set'
+  173  git push
+  174  cd ../temp
+  175  ll
+  176  cp ../nginx-nodejs-redis/tmp/set .
+  177  ll
+  178  stty -a
+  179  ll
+  180  cd ../nginx-nodejs-redis/tmp
+  181  mkdir etc
+  182  sudo -l
+  183  cd etc
+  184  ll
+  185  sudo tar cC /etc .|tar xv
+  186  ll
+  187  cd ../..
+  188  git status
+  189  git add .
+  190  git commit -am'add tmp/etc/'
+  191  git push
+  192  cd
+  193  ll
+  194  mkdir .ssh
+  195  ll
+  196  chmod 700 .ssh
+  197  cd .ssh/
+  198  ll
+  199  touch authorized_keys
+  200  chmod 600 authorized_keys 
+  201  vi authorized_keys 
+  202  ll
+  203  id
+  204  ll
+  205  sudo lastb
+  206  cd /var/log
+  207  ll
+  208  journalctl
+  209  journalctl -b
+  210  ll journal/
+  211  date
+  212  cd
+  213  ll /
+  214  ll /workspaces/
+  215  ll /workspaces/nginx-nodejs-redis/
+  216  cd /workspaces/nginx-nodejs-redis/
+  217  ll
+  218  docker ps -a
+  219  docker compose down
+  220  docker ps -a
+  221  docker images -a
+  222  docker compose up -d
+  223  redis-benchmark -D
+  224  redis-benchmark -t set -n 1000000 -r 100000000
+  225  docker ps -a
+  226  docker exec -ti redis bash
+  227  cd tmp
+  228  ll
+  229  vi creation.log
+  230  ll
+  231  cd ..
+  232  git status
+  233  git add .
+  234  git status
+  235  history |tee tmp/bash.history
