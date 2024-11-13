@@ -1,9 +1,9 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/go
 {
-	"name": "redis",
+	"name": "nginx-web-redis",
 	"dockerComposeFile": "compose.yml",
-	"service": "nginx",
+	"service": "web",
 	"workspaceFolder": "/nginx-nodejs-redis"
 	"features": { "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {} }
 }
